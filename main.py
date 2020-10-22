@@ -84,7 +84,6 @@ for keys, values in prices.items():
         else:
             # Multiplying by 104 to account for repeat purchases (2 four packs per every 4 weeks = 104 bottles)
             addedRevenue = ((consumerPercent/100)*consumers[consumerType])*(float(keys)*104)
-            #addedRevenue = ((consumerPercent / 100) * consumers[consumerType]) * ((float(keys)-0.20) * 104) # Profits
             prices[keys]['revenue'] = currentRevenue + addedRevenue
     print("${0} will generate ${1} in revenue.".format(keys, values['revenue']))
     pricesList.append([keys, values['revenue']])
@@ -100,13 +99,10 @@ for keys, values, in flavours.items():
         else:
             consumerPercentReal = prices['0.79'][consumerType]*(consumerPercent/100)
             consumerPercentTotal = (consumerPercentReal/100) * consumers[consumerType]
-            #flavourRevenue = consumerPercentTotal * ((0.79-0.20)*104) PROFITS
             flavourRevenue = consumerPercentTotal * (0.79*104)
-            #print(flavourRevenue)
             currentRevenue = flavours[keys]['revenue']
             flavours[keys]['revenue'] = currentRevenue + flavourRevenue
     flavourRevenues.append([keys, values['revenue']])
-    #print("{0} will generate ${1} in revenue.".format(keys, values['revenue']))
 
 
 # Sorts pricesList and flavourRevenues by 2nd element.
@@ -123,11 +119,3 @@ print("Revenues should be prioritized in the following order:")
 for i in range(len(flavourRevenues)):
     print("{0}. {1} generates ${2} in revenue".format(i+1, flavourRevenues[i][0], flavourRevenues[i][1]))
 
-#print(prices)
-
-# Calculations are based upon the average purchase of Green Ox being a 4 pack, w
-# Calculations are based upon the "average purchase", assuming that customers are purchasing 2
-# 4 packs of Green Ox every 4 weeks throughout the year (104 bottles - 52/4).
-
-# Calculations based upon the average purchase, assuming customers are purchasing
-# 2 4 packs of Green Ox every 4 weeks throughout the year, at a production price of $0.20
